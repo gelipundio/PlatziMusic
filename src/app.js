@@ -8,33 +8,26 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View
+  View,
+  Platform
 } from 'react-native';
 
-import ArtistList from './ArtistList'
+import { Scene, Router } from 'react-native-router-flux'
+
+import HomeView from './HomeView'
+import ArtistDetailView from './ArtistDetailView'
 
 export default class PlatziMusic extends Component {
-
-    constructor(props){
-        super(props)
-
-        const currentArtist ={
-            imgSource : 'https://pbs.twimg.com/profile_images/3246448859/12184c1d111736d7420b7f4f0bb552a1_400x400.jpeg',
-            name : 'Rata Blanca2 ',
-            likes : 200,
-            comments : 140
-        }
-        this.state = {
-            artists : Array(15).fill(currentArtist)
-        }
-
-    }
-
+    
     render() {
+        const isAndroid = Platform.OS === 'android'
         return (
-            <View style={ styles.container }>
-                <ArtistList artists={ this.state.artists }/>
-            </View>            
+            <Router>
+                <Scene key='root'>
+                    <Scene key='home' component={ HomeView } hideNavBar={!isAndroid} ></Scene>
+                    <Scene key='artistDetail' component={ ArtistDetailView } hideNavBar={false}></Scene>
+                </Scene>
+            </Router>      
         )
     }
 

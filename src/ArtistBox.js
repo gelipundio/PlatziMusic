@@ -17,10 +17,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
 export default class ArtistBox extends Component {
 
   render() {
-    const { imgSource,name,likes,comments } = this.props.artist
+    const { image,name,likes,comments } = this.props.artist
     return (
         <View style ={styles.artistBox}>
-            <Image style={styles.image} source={{uri : imgSource}}></Image>
+            <Image style={styles.image} source={{uri : image}}></Image>
             <View style={styles.info}>
                 <Text style={styles.name}>{name}</Text>    
                 <View style={styles.row}>
